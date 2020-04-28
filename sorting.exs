@@ -46,15 +46,21 @@ defmodule Time do
   def now, do: ({msecs, secs, musecs} = :erlang.now; ((msecs*1000000 + secs)*1000000 + musecs)/1000000)
 end
 
-random_list = (1..10000) |> Enum.map(fn _ -> :rand.uniform(1000) end)
+random_list = (1..20000) |> Enum.map(fn _ -> :rand.uniform(1000) end)
+
+IO.puts "Memory: #{:erlang.memory(:total)}"
 
 t = Time.now
 Selection.sort(random_list)
 prepending_selection_sort = Time.now - t
 
+IO.puts "Memory: #{:erlang.memory(:total)}"
+
 t = Time.now
 Sort.selection(random_list)
 appending_selection_sort = Time.now - t
+
+IO.puts "Memory: #{:erlang.memory(:total)}"
 
 IO.puts "Running Elixir selection sort with prepeding takes #{prepending_selection_sort} seconds"
 IO.puts "Running Elixir selection sort with appending takes #{appending_selection_sort} seconds"
