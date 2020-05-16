@@ -19,6 +19,3 @@ defmodule ChangeProblem do
     end
   end
 end
-
-answer = ChangeProblem.solve(50, [1, 5, 10, 15, 30, 20])
-answer |> IO.inspect(label: "Answer", charlists: :as_lists)
